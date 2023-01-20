@@ -1,12 +1,14 @@
 import React from "react";
 import "./Header.css";
 
-type TaskProps = {};
+type HeaderProps = {
+    title : string;
+};
 
-export const Header = () => {
+export const Header = ({title}: HeaderProps) => {
     return (
         <div className="header">
-        <h1>Replace me using the title const</h1>
+        <h1>{title}</h1>
         </div>
     );
 }
