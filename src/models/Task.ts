@@ -1,15 +1,9 @@
-export{}
 
-type TaskProps = {
-    taskId : string;
-};
-
-export interface TaskType = ({taskId}: TaskProps) => {
-    return (
+export interface TaskType {
     id: number;
     title: string;
     description: string;
     done: boolean;
-    )
+    
 }
 
