@@ -30,7 +30,11 @@ const App = () => {
   return (
     <div className="main">
       <Header title={title} />
-      <Task task = {tasks[2]}/>
+      
+      {tasks.map((task) => (
+        <Task task={task}/>
+      ))}
+
       <button
         className="add-task-btn"
         onClick={() => console.log("this button should open the modal")}
