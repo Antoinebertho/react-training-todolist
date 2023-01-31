@@ -1,22 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Task } from "./components/Task";
 import { TaskFormModal } from "./components/TaskFormModal";
 import { data } from "./data/tasks";
 import { Header } from "./components/Header";
+import { TaskList } from "./components/TaskList";
+import { TaskType } from "./models/Task";
 
 const App = () => {
-  const title = "Antoine's To do list";
-  const tasks = data;
+  const title = "To do list";
   const taskToEdit: any = null;
+  const [showModal, setShowModal] = useState(false);
+  const [tasks, setTasks] = useState(data);
+
 
   const updateTaskState = (taskId: number) => {
     console.error("I need to be implemented");
   };
 
   const addOrEditTask = (event: any, taskToEditId?: number) => {
-    event.preventDefault();
-    console.error("I need to be implemented");
+    event.preventDefault()
+    let form=event.currentTarget;
+    const newTask: TaskType= {done: false, id:tasks.length +1, title:form.title.value, description:form.description.value};
+    const newTask.push()
+    setShowModal(false)
   };
 
   const editTask = (taskId: number) => {
@@ -24,28 +31,26 @@ const App = () => {
   };
 
   const deleteTask = (taskId: number) => {
-    console.error("I need to be implemented");
+    const newList: TaskType[] = tasks.filter( task => task.id !== taskId);
+    setTasks(newList)
   };
 
   return (
     <div className="main">
       <Header title={title} />
       
-      {tasks.map((task) => (
-        <Task task={task}/>
-      ))}
+     <TaskList tasks={tasks} deleteTask={deleteTask}/>
+
 
       <button
         className="add-task-btn"
-        onClick={() => console.log("this button should open the modal")}
+        onClick={() => setShowModal(true)}
       >
         +
       </button>
       <TaskFormModal
-        show={false}
-        handleClose={() =>
-          console.log("pass me a method that will close the modal")
-        }
+        show={showModal}
+        handleClose={() => setShowModal(false)}
         addOrEditTask={addOrEditTask}
         initialValues={
           taskToEdit != null
