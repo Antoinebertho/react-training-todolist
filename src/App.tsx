@@ -20,20 +20,33 @@ const App = () => {
 
   const addOrEditTask = (event: any, taskToEditId?: number) => {
     event.preventDefault();
-    const newTask: TaskType = {
-      done: false,
-      id: tasks[tasks.length - 1].id + 1,
-      title: event.target.title.value,
-      description: event.target.description.value,
-    };
-    
-    setTasks([...tasks, newTask])
+
+    if (taskToEditId != null)  {
+      const tmpTask = tasks.find((task) => taskToEditId === task.id);
+      if (tmpTask) {
+        tmpTask.title = event.target.title.value;
+        tmpTask.description = event.target.description.value;
+      }
+      setTaskToEdit(null);
+      console.log(taskToEditId)
+    } else {
+      const newTask: TaskType = {
+        done: false,
+        id: tasks[tasks.length - 1].id + 1,
+        title: event.target.title.value,
+        description: event.target.description.value,
+      };
+      setTasks([...tasks, newTask])
+    }
     setShowModal(false)
   };
 
   const editTask = (taskId: number) => {
-    
-    console.error("I need to be implemented");
+    const task = tasks.find((task) => taskId === task.id);
+    if(task != null) {
+      setTaskToEdit(task);
+      setShowModal(true);
+    }
   };
 
   const deleteTask = (taskId: number) => {
@@ -46,7 +59,6 @@ const App = () => {
       <Header title={title} />
       
      <TaskList tasks={tasks} deleteTask={deleteTask}/>
-
 
       <button
         className="add-task-btn"

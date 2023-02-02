@@ -7,6 +7,7 @@ type TaskProps = {
   deleteTask:(taskId: number) => void;
 };
 
+
 export const Task = ({task, deleteTask}: TaskProps) => {
   return (
     <div className="task-container">
