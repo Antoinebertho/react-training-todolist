@@ -19,14 +19,20 @@ const App = () => {
   };
 
   const addOrEditTask = (event: any, taskToEditId?: number) => {
-    event.preventDefault()
-    let form=event.currentTarget;
-    const newTask: TaskType= {done: false, id:tasks.length +1, title:form.title.value, description:form.description.value};
-    const newTask.push()
+    event.preventDefault();
+    const newTask: TaskType = {
+      done: false,
+      id: tasks[tasks.length - 1].id + 1,
+      title: event.target.title.value,
+      description: event.target.description.value,
+    };
+    
+    setTasks([...tasks, newTask])
     setShowModal(false)
   };
 
   const editTask = (taskId: number) => {
+    
     console.error("I need to be implemented");
   };
 
