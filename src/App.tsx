@@ -9,7 +9,8 @@ import { TaskType } from "./models/Task";
 
 const App = () => {
   const title = "To do list";
-  const taskToEdit: any = null;
+  // const taskToEdit: any = null;
+  const [taskToEdit, setTaskToEdit] = useState<TaskType | null >(null);
   const [showModal, setShowModal] = useState(false);
   const [tasks, setTasks] = useState(data);
 
@@ -58,7 +59,7 @@ const App = () => {
     <div className="main">
       <Header title={title} />
       
-     <TaskList tasks={tasks} deleteTask={deleteTask}/>
+     <TaskList tasks={tasks} deleteTask={deleteTask} editTask = {editTask}/>
 
       <button
         className="add-task-btn"

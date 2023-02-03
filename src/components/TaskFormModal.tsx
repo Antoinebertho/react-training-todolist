@@ -23,7 +23,7 @@ export const TaskFormModal = ({
   useEffect(() => {
     setTitle(initialValues?.title);
     setDescription(initialValues?.description);
-  }, {initialValues}); 
+  }, [initialValues]); 
 
   if (!show) return null;
 
