@@ -43,7 +43,7 @@ h3 {
 
 .close-btn:hover {
   color: #fff;
-  background-color: #1bc4bc;
+  background-color: #355ae0;
 }
 
 .task-form {
@@ -89,6 +89,6 @@ h3 {
 }
 
 .form-actions button:hover {
-  border-color: #1bc4bc;
-  background-color: #1bc4bc;
+  border-color: #355ae0;
+  background-color: #355ae0;
 }
